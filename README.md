@@ -1,10 +1,10 @@
-###**Greetings!**
+### **Greetings!**
 
 This repo is a collection of code challenges completed by myself.
 
 All challenges are in a separate file. 
 
-####Each file contains:
+#### Each file contains:
 - The description of the challenge
 - URL of the challenge
 - My solution

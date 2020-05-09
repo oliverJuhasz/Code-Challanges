@@ -4,18 +4,16 @@ import java.util.Map;
 
 public class CountTriplets {
 
-    static long tripletCounter(List<Long> arr, long r) {
+    static long tripletCounter(List<Long> numbers, long ratio) {
         long numberOfTriplets = 0;
-        Map<Long, Long> numbersWithOccurance;
-        numbersWithOccurance = convertListToHashmap(arr);
-        for (Long number : numbersWithOccurance.keySet()) {
-            long powerOfTwo = number * r;
-            long powerOfThree = number * r * r;
-            Long numberOfPossibleSecondStep = numbersWithOccurance.get(powerOfTwo);
-            Long numberOfPossibleThirdStep = numbersWithOccurance.get(powerOfThree);
-            if (numberOfPossibleSecondStep != null && numberOfPossibleThirdStep != null && numberOfPossibleSecondStep > 0 && numberOfPossibleThirdStep > 0) {
-                numberOfTriplets += numbersWithOccurance.get(number) * numberOfPossibleSecondStep * numberOfPossibleThirdStep;
-            }
+        Map<Long, Long> countPerNumber = convertListToHashmap(numbers);
+        for (Long number : countPerNumber.keySet()) {
+            long multipliedOnce = number * ratio;
+            long multipliedTwice = number * ratio * ratio;
+            long firstMemberOccurance = countPerNumber.get(number);
+            long secondMemberOccurance = countPerNumber.get(number * ratio) == null ? 0 : countPerNumber.get(number * ratio);
+            long thirdMemberOccurance = countPerNumber.get(number * ratio * ratio) == null ? 0 : countPerNumber.get(number * ratio * ratio);
+            numberOfTriplets += firstMemberOccurance * secondMemberOccurance * thirdMemberOccurance;
         }
         return numberOfTriplets;
     }

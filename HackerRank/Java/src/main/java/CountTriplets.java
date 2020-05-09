@@ -6,7 +6,7 @@ public class CountTriplets {
 
     static long tripletCounter(List<Long> numbers, long ratio) {
         long numberOfTriplets = 0;
-        Map<Long, Long> countPerNumber = convertListToHashmap(numbers);
+        Map<Long, Long> countPerNumber = countNumbersInList(numbers);
         for (Long number : countPerNumber.keySet()) {
             long multipliedOnce = number * ratio;
             long multipliedTwice = number * ratio * ratio;
@@ -19,16 +19,15 @@ public class CountTriplets {
         return numberOfTriplets;
     }
 
-    private static Map<Long, Long> convertListToHashmap(List<Long> arr) {
-        Map<Long, Long> numbersWithOccurance = new HashMap<>();
-        for (Long number : arr) {
-            if (numbersWithOccurance.containsKey(number)) {
-                numbersWithOccurance.put(number, numbersWithOccurance.get(number) + 1);
+    private static Map<Long, Long> countNumbersInList(List<Long> numbers) {
+        Map<Long, Long> countPerNumber = new HashMap<>();
+        for (Long number : numbers) {
+            if (countPerNumber.containsKey(number)) {
+                countPerNumber.put(number, countPerNumber.get(number) + 1);
             } else {
-                numbersWithOccurance.put(number, 1L);
+                countPerNumber.put(number, 1L);
             }
         }
-        return numbersWithOccurance;
+        return countPerNumber;
     }
-
 }

@@ -10,9 +10,10 @@ public class CountTriplets {
         for (Long number : countPerNumber.keySet()) {
             long multipliedOnce = number * ratio;
             long multipliedTwice = number * ratio * ratio;
+
             long firstMemberOccurance = countPerNumber.get(number);
-            long secondMemberOccurance = countPerNumber.get(number * ratio) == null ? 0 : countPerNumber.get(number * ratio);
-            long thirdMemberOccurance = countPerNumber.get(number * ratio * ratio) == null ? 0 : countPerNumber.get(number * ratio * ratio);
+            long secondMemberOccurance = countPerNumber.get(multipliedOnce) == null ? 0 : countPerNumber.get(multipliedOnce);
+            long thirdMemberOccurance = countPerNumber.get(multipliedTwice) == null ? 0 : countPerNumber.get(multipliedTwice);
             numberOfTriplets += firstMemberOccurance * secondMemberOccurance * thirdMemberOccurance;
         }
         return numberOfTriplets;

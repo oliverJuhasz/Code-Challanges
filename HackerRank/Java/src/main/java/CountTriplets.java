@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class CountTriplets {
 
-    static long tripletCounter(List<Long> numbers, long ratio) {
+    static long countTriplets(List<Long> numbers, long ratio) {
         long numberOfTriplets = 0;
         Map<Long, Long> countPerNumber = countNumbersInList(numbers);
         for (Long number : countPerNumber.keySet()) {

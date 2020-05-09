@@ -15,7 +15,7 @@ public class CountTripletsTest {
         long ratio = 2;
 
         // WHEN
-        long result = CountTriplets.tripletCounter(numbers, ratio);
+        long result = CountTriplets.countTriplets(numbers, ratio);
 
         // WHEN
         assertEquals(2, result);
@@ -29,7 +29,7 @@ public class CountTripletsTest {
         long ratio = 3;
 
         // WHEN
-        long result = CountTriplets.tripletCounter(numbers, ratio);
+        long result = CountTriplets.countTriplets(numbers, ratio);
 
         // WHEN
         assertEquals(6, result);
@@ -43,7 +43,7 @@ public class CountTripletsTest {
         long ratio = 5;
 
         // WHEN
-        long result = CountTriplets.tripletCounter(numbers, ratio);
+        long result = CountTriplets.countTriplets(numbers, ratio);
 
         // WHEN
         assertEquals(4, result);

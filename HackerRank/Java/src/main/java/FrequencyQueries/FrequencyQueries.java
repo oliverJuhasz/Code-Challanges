@@ -9,10 +9,8 @@ public class FrequencyQueries {
     public static List<Integer> freqQuery(int[][] queries) {
         Map<Integer, Integer> counter = new HashMap<>();
         Map<Integer, Integer> occurances = new HashMap<>();
-        int xyz = 0;
         List<Integer> results = new ArrayList<>(queries.length);
         for (int[] query : queries) {
-            xyz++;
             int command = query[0];
             int number = query[1];
             if (command == 1) {

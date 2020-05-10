@@ -42,7 +42,7 @@ public class FrequencyQueriesTest {
         List<Integer> result = FrequencyQueries.freqQuery(input);
 
         // WHEN
-        assertEquals(List.of(0, 1), result);
+        assertEquals(List.of(0, 1, 1), result);
     }
 
 }

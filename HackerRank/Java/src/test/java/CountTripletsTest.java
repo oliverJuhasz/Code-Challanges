@@ -4,13 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class CountTripletsTest {
 
@@ -76,13 +74,13 @@ public class CountTripletsTest {
     @Test
     public void test5() {
         // GIVEN
-        Scanner scanner = null;
+        String numbersAsString = null;
         try {
-            scanner = new Scanner(new File(getClass().getClassLoader().getResource("TripletsTest1").getFile()));
+            Scanner scanner  = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("TripletsTest1")).getFile()));
+            numbersAsString = scanner.nextLine();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            fail("Test file not found");
         }
-        String numbersAsString = scanner.nextLine();
         String[] stringArr = numbersAsString.split(" ");
 
         List<Long> numbers = Arrays.stream(stringArr).map(Long::valueOf).collect(Collectors.toList());

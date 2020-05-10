@@ -19,8 +19,8 @@ public class FrequencyQueries {
             if (command == 1) {
                 counter.compute(number, (key, value) -> value == null ? 1 : value + 1);
             } else if (command == 2) {
-                Integer occuranceToRemove = counter.get(number);
-                if (occuranceToRemove != null) {
+                Integer occurrenceToRemove = counter.get(number);
+                if (occurrenceToRemove != null && occurrenceToRemove != 0) {
                     counter.compute(number, (key, value) -> value - 1);
                 }
             } else {
@@ -33,7 +33,6 @@ public class FrequencyQueries {
             }
         }
         return result;
-
     }
 
 }

@@ -11,7 +11,7 @@ public class FrequencyQueries {
 
     public static List<Integer> freqQuery(int[][] queries) {
         Map<Integer, Integer> counter = new HashMap<>();
-        List<Integer> result = new ArrayList<>();
+        List<Integer> results = new ArrayList<>();
         for (int[] query : queries) {
             int command = query[0];
             int number = query[1];
@@ -25,13 +25,13 @@ public class FrequencyQueries {
             } else {
                 boolean validMatch = counter.values().stream().anyMatch(value -> value == number);
                 if (validMatch) {
-                    result.add(1);
+                    results.add(1);
                 } else {
-                    result.add(0);
+                    results.add(0);
                 }
             }
         }
-        return result;
+        return results;
     }
 
 }

@@ -14,8 +14,8 @@ public class FrequencyQueriesTest {
     @Test
     public void test1() {
         // GIVEN
-        List<List<Integer>> input = List.of(List.of(1, 5), List.of(1, 6), List.of(3, 2), List.of(1, 10),
-                List.of(1, 10), List.of(1, 6), List.of(2, 5), List.of(3, 2));
+        int[][] input = {{1, 5}, {1, 6}, {3, 2}, {1, 10},
+            {1, 10}, {1, 6}, {2, 5}, {3, 2}};
 
         // WHEN
         List<Integer> result = FrequencyQueries.freqQuery(input);
@@ -27,7 +27,7 @@ public class FrequencyQueriesTest {
     @Test
     public void test2() {
         // GIVEN
-        List<List<Integer>> input = List.of(List.of(3, 4), List.of(2, 1003), List.of(1, 16), List.of(3, 1));
+        int[][] input = {{3, 4}, {2, 1003}, {1, 16}, {3, 1}};
 
         // WHEN
         List<Integer> result = FrequencyQueries.freqQuery(input);
@@ -39,8 +39,8 @@ public class FrequencyQueriesTest {
     @Test
     public void test3() {
         // GIVEN
-        List<List<Integer>> input = List.of(List.of(1, 3), List.of(2, 3), List.of(3, 2), List.of(1, 4),
-                List.of(1, 5), List.of(1, 5), List.of(1, 4), List.of(3, 2), List.of(2, 4), List.of(3, 2));
+        int[][] input = {{1, 3}, {2, 3}, {3, 2}, {1, 4},
+                {1, 5}, {1, 5}, {1, 4}, {3, 2}, {2, 4},{3, 2}};
 
         // WHEN
         List<Integer> result = FrequencyQueries.freqQuery(input);
@@ -52,12 +52,14 @@ public class FrequencyQueriesTest {
     @Test
     public void test4() {
         // GIVEN
-        List<List<Integer>> queries = new ArrayList<>();
+        int[][] queries = new int[100000][2];
         List<Integer> expectedOutput = new ArrayList<>();
         try {
             Scanner scanner  = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("FrequenciesTest/FrequenciesTestInput")).getFile()));
+            int i = 0;
             while (scanner.hasNextLine()) {
-                queries.add(Arrays.stream(scanner.nextLine().split(" ")).map(Integer::valueOf).collect(Collectors.toList()));
+                queries[i] = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::valueOf).toArray();
+                i++;
             }
             scanner.close();
             scanner = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("FrequenciesTest/FrequenciesTestOutput")).getFile()));

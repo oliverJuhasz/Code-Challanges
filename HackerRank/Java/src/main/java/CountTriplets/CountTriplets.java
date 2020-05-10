@@ -6,6 +6,8 @@ import java.util.Map;
 
 public class CountTriplets {
 
+    //https://www.hackerrank.com/challenges/count-triplets-1
+
     public static long countTriplets(List<Long> numbers, long ratio){
         Map<Long,Long> leftPart = new HashMap<>();
         Map<Long,Long> midPart = new HashMap<>();

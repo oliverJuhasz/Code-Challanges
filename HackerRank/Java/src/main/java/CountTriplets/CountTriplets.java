@@ -1,10 +1,12 @@
+package CountTriplets;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CountTriplets {
 
-    static long countTriplets(List<Long> numbers, long ratio){
+    public static long countTriplets(List<Long> numbers, long ratio){
         Map<Long,Long> leftPart = new HashMap<>();
         Map<Long,Long> midPart = new HashMap<>();
         long numberOfTriplets = 0L;

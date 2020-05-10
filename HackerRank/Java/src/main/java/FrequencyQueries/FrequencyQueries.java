@@ -7,7 +7,7 @@ public class FrequencyQueries {
     //https://www.hackerrank.com/challenges/frequency-queries/
 
     // Complete the freqQuery function below.
-    static List<Integer> freqQuery(List<List<Integer>> queries) {
+    public static List<Integer> freqQuery(List<List<Integer>> queries) {
         return null;
 
     }

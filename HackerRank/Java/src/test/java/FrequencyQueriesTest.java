@@ -1,9 +1,13 @@
 import FrequencyQueries.FrequencyQueries;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class FrequencyQueriesTest {
 
@@ -43,6 +47,32 @@ public class FrequencyQueriesTest {
 
         // WHEN
         assertEquals(List.of(0, 1, 1), result);
+    }
+
+    @Test
+    public void test4() {
+        // GIVEN
+        List<List<Integer>> queries = new ArrayList<>();
+        List<Integer> expectedOutput = new ArrayList<>();
+        try {
+            Scanner scanner  = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("FrequenciesTest/FrequenciesTestInput")).getFile()));
+            while (scanner.hasNextLine()) {
+                queries.add(Arrays.stream(scanner.nextLine().split(" ")).map(Integer::valueOf).collect(Collectors.toList()));
+            }
+            scanner.close();
+            scanner = new Scanner(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("FrequenciesTest/FrequenciesTestOutput")).getFile()));
+            while (scanner.hasNextLine()) {
+                expectedOutput.add(Integer.valueOf(scanner.nextLine()));
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            fail("Test file not found");
+        }
+        // WHEN
+        List<Integer> result = FrequencyQueries.freqQuery(queries);
+
+        // WHEN
+        assertEquals(expectedOutput, result);
     }
 
 }

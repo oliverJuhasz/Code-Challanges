@@ -1,9 +1,6 @@
 package SherlockAndAnagrams;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class SherlockAndAnagrams {
 
@@ -11,21 +8,36 @@ public class SherlockAndAnagrams {
 
     // Complete the sherlockAndAnagrams function below.
     public static int sherlockAndAnagrams(String word) {
-        Map<String, Integer> substrings = splitToSubstrings(word);
-        return 1;
+        int numberOfPossibleAnagrams = 0;
 
-    }
+        for (int startPoint = 0; startPoint < word.length(); startPoint++) {
+            for (int step = 1; step < word.length(); step++) {
+                Map<HashMap<Character, Integer>, Integer> candidates = new HashMap<>();
+                for (int i = 0; i < word.length(); i++) {
+                    Map<Character, Integer> keyMap = convertToKeyMap(word.substring(i, i + step));
+                    if (candidates.containsKey(keyMap)) {
+                        numberOfPossibleAnagrams += candidates.get(keyMap);
+                        candidates.compute((HashMap<Character, Integer>) keyMap, (key, value) -> value + 1);
+                    } else {
+                        candidates.put((HashMap<Character, Integer>) keyMap, 1);
+                    }
+                }
 
-    private static Map<String, Integer> splitToSubstrings(String word) {
-        Map<String, Integer> substrings = new HashMap<>();
-        for (int i = 1; i < word.length(); i++) {
-            for (int j = 0; j <= word.length() - i; j++) {
-                String subString = word.substring(j, j + i);
-                substrings.compute(subString, (key, value) -> value != null ? value + 1 : 1);
             }
         }
-        return substrings;
+
+        return numberOfPossibleAnagrams;
     }
 
+    private static Map<Character, Integer> convertToKeyMap(String subString) {
+        Map<Character, Integer> keyMap = new HashMap<>();
+        for (char character : subString.toCharArray()) {
+            keyMap.compute(character, (key, value) -> value == null ? 1 : value + 1);
+        }
+        return keyMap;
+
+
+
+    }
 
 }

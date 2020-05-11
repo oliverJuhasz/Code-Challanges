@@ -9,23 +9,19 @@ public class SherlockAndAnagrams {
     // Complete the sherlockAndAnagrams function below.
     public static int sherlockAndAnagrams(String word) {
         int numberOfPossibleAnagrams = 0;
-
-        for (int startPoint = 0; startPoint < word.length(); startPoint++) {
-            for (int step = 1; step < word.length(); step++) {
-                Map<HashMap<Character, Integer>, Integer> candidates = new HashMap<>();
-                for (int i = 0; i < word.length(); i++) {
-                    Map<Character, Integer> keyMap = convertToKeyMap(word.substring(i, i + step));
-                    if (candidates.containsKey(keyMap)) {
-                        numberOfPossibleAnagrams += candidates.get(keyMap);
-                        candidates.compute((HashMap<Character, Integer>) keyMap, (key, value) -> value + 1);
-                    } else {
-                        candidates.put((HashMap<Character, Integer>) keyMap, 1);
-                    }
+        for (int step = 1; step < word.length(); step++) {
+            Map<HashMap<Character, Integer>, Integer> candidates = new HashMap<>();
+            for (int i = 0; i < word.length() - step + 1; i++) {
+                Map<Character, Integer> keyMap2 = convertToKeyMap(word.substring(i, i + step));
+                if (candidates.containsKey(keyMap2)) {
+                    numberOfPossibleAnagrams += candidates.get(keyMap2);
+                    candidates.compute((HashMap<Character, Integer>) keyMap2, (key, value) -> value + 1);
+                } else {
+                    candidates.put((HashMap<Character, Integer>) keyMap2, 1);
                 }
-
             }
-        }
 
+        }
         return numberOfPossibleAnagrams;
     }
 

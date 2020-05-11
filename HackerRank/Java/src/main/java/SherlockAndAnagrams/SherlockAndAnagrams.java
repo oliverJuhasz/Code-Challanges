@@ -10,17 +10,23 @@ public class SherlockAndAnagrams {
     public static int sherlockAndAnagrams(String word) {
         int numberOfPossibleAnagrams = 0;
         for (int step = 1; step < word.length(); step++) {
-            Map<HashMap<Character, Integer>, Integer> candidates = new HashMap<>();
-            for (int i = 0; i < word.length() - step + 1; i++) {
-                Map<Character, Integer> keyMap2 = convertToKeyMap(word.substring(i, i + step));
-                if (candidates.containsKey(keyMap2)) {
-                    numberOfPossibleAnagrams += candidates.get(keyMap2);
-                    candidates.compute((HashMap<Character, Integer>) keyMap2, (key, value) -> value + 1);
-                } else {
-                    candidates.put((HashMap<Character, Integer>) keyMap2, 1);
-                }
-            }
+            numberOfPossibleAnagrams += getAnagramsByStep(word, step);
 
+        }
+        return numberOfPossibleAnagrams;
+    }
+
+    private static int getAnagramsByStep(String word, int step) {
+        int numberOfPossibleAnagrams = 0;
+        Map<HashMap<Character, Integer>, Integer> candidates = new HashMap<>();
+        for (int i = 0; i < word.length() - step + 1; i++) {
+            Map<Character, Integer> keyMap = convertToKeyMap(word.substring(i, i + step));
+            if (candidates.containsKey(keyMap)) {
+                numberOfPossibleAnagrams += candidates.get(keyMap);
+                candidates.compute((HashMap<Character, Integer>) keyMap, (key, value) -> value + 1);
+            } else {
+                candidates.put((HashMap<Character, Integer>) keyMap, 1);
+            }
         }
         return numberOfPossibleAnagrams;
     }
@@ -31,9 +37,6 @@ public class SherlockAndAnagrams {
             keyMap.compute(character, (key, value) -> value == null ? 1 : value + 1);
         }
         return keyMap;
-
-
-
     }
 
 }

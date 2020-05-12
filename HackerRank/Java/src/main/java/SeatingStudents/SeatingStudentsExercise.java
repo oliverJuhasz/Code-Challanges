@@ -10,18 +10,18 @@ public class SeatingStudentsExercise {
     public static int SeatingStudents(int[] input) {
         int possibleCombinations = 0;
         int numberOfSeating = input[0];
-        Set<Integer> occupiedDesks = new HashSet<>();
+        Set<Integer> occupiedDeskIndexes = new HashSet<>();
         Arrays.stream(input)
                 .skip(1L)
                 .map(value -> value - 1)
-                .forEach(occupiedDesks::add);
-        boolean evenDeskNumber = true;
-        for (int i = 1; i < numberOfSeating; i += evenDeskNumber ? 3 : 1) {
-            boolean isExaminedDeskOccupied = occupiedDesks.contains(i);
+                .forEach(occupiedDeskIndexes::add);
+        boolean isDeskIndexOdd = true;
+        for (int i = 1; i < numberOfSeating; i += isDeskIndexOdd ? 3 : 1) {
+            boolean isExaminedDeskOccupied = occupiedDeskIndexes.contains(i);
             if (!isExaminedDeskOccupied) {
-                possibleCombinations += getNumberOfSeatingCombinationForSeat(evenDeskNumber, i, occupiedDesks, numberOfSeating);
+                possibleCombinations += getNumberOfSeatingCombinationForSeat(isDeskIndexOdd, i, occupiedDeskIndexes, numberOfSeating);
             }
-            evenDeskNumber = !evenDeskNumber;
+            isDeskIndexOdd = !isDeskIndexOdd;
         }
         return possibleCombinations;
     }

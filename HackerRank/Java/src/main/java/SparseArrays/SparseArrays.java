@@ -17,4 +17,20 @@ public class SparseArrays {
         }
         return results;
     }
+
+    public static int[] matchingStringsNaive(String[] strings, String[] queries) {
+        int[] results = new int[queries.length];
+        int resultIndex = 0;
+        for (String query : queries) {
+            int occurances = 0;
+            for (String word : strings) {
+                if (query.equals(word)) {
+                    occurances++;
+                }
+            }
+            results[resultIndex] = occurances;
+            resultIndex++;
+        }
+        return results;
+    }
 }

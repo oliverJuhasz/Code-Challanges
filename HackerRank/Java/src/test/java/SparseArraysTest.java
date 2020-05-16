@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SparseArraysTest {
 
     @ParameterizedTest
-    @CsvSource({"aba baba aba xzxb,aba xzxb,2 1 0",
-            "def de fgh de,lmn fgh,1 0 1",
+    @CsvSource({"aba baba aba xzxb,aba xzxb ab,2 1 0",
+            "def de fgh,de lmn fgh,1 0 1",
             "abcde sdaklfj asdjf na basdn sdaklfj asdjf na asdjf na basdn sdaklfj asdjf,abcde sdaklfj asdjf na basdn,1 3 4 3 2"})
     @DisplayName("matchingStrings returns the correct number of occurances in input string")
     public void test1(String rawInput1, String rawInput2, String rawInput3) {
